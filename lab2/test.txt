@@ -1,0 +1,32 @@
+int sum(float a, int b){
+    float ans;
+    ans = a + b;
+    return ans;
+}
+
+struct student{
+    int x;
+    int y;
+}
+
+int a;
+int[3] b;
+int c;
+int f;
+int * k;
+
+a = 1;
+b[0] = 1;
+c = a + b[0];
+f = sum(a + b[0]);
+
+if(a == 0){
+    b[1] = 1;
+}else{
+    b[1] = 0;
+}
+a === 1;
+
+while(f < 4){
+    b[2] = b[2] + 1;
+}

@@ -1,0 +1,35 @@
+Programme -> # include <X.h> Module
+X.h -> stdio.h | string.h | stdlib.h
+
+Module -> epsilon | Defination ; Module | Assignment ; Module | Control Module | Function Module | Struct Module | Call ; Module
+
+Defination -> Type Point id
+Type -> int | float | bool | id | double | Type [ const ]
+Point -> epsilon | *
+
+Struct -> struct id { Statement }
+Statement -> Defination ; | Defination ; Statement
+
+Function -> Type Point id ( Parameter ) { Process }
+Parameter -> epsilon | Defination | Defination , Parameter
+Process -> Module Return
+Return -> return id Index ; | epsilon
+
+Assignment -> id Index = Value
+Value -> Value + Value | Value - Value | Value * Value | Value / Value | Call
+Value -> - Value
+Value -> ( Value )
+Value -> const | id Index
+Index -> [ Value ] Index | epsilon
+
+Control -> If | IfElse | While
+If -> if ( Condition ) { Module }
+IfElse -> if ( Condition ) { Module } else { Module }
+While -> while ( Condition ) { Module }
+Condition -> Condition and Condition | Condition or Condition | not Condition | ( Condition ) | Value Relop Value | true | false
+Relop -> < | <= | == | != | > | >=
+
+Call -> id ( Transmit )
+Transmit -> epsilon | Value | Value , Transmit
+
+end
