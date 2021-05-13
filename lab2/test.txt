@@ -1,6 +1,6 @@
-int sum(float a, int b){
-    float ans;
-    ans = a + b;
+int sum(int x, int y){
+    int ans;
+    ans = x + y;
     return ans;
 }
 

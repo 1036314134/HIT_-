@@ -3,17 +3,18 @@ X.h -> stdio.h | string.h | stdlib.h
 
 Module -> epsilon | Defination ; Module | Assignment ; Module | Control Module | Function Module | Struct Module | Call ; Module
 
-Defination -> Type Point id
-Type -> int | float | bool | id | double | Type [ const ]
-Point -> epsilon | *
+Defination -> Data id
+Data -> Type Point | Data [ const ]
+Type -> int | float | bool | id
+Point -> epsilon | * Point
 
 Struct -> struct id { Statement }
 Statement -> Defination ; | Defination ; Statement
 
-Function -> Type Point id ( Parameter ) { Process }
+Function -> Data id ( Parameter ) { Process }
 Parameter -> epsilon | Defination | Defination , Parameter
 Process -> Module Return
-Return -> return id Index ; | epsilon
+Return -> return Value ; | epsilon
 
 Assignment -> id Index = Value
 Value -> Value + Value | Value - Value | Value * Value | Value / Value | Call
