@@ -1,0 +1,3 @@
+x int 0
+y int 32
+z int 64
