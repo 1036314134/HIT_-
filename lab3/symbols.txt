@@ -1,3 +1,8 @@
 x int 0
-y int 32
-z int 64
+y int 4
+ret int 8
+a float 12
+b int 16
+c int 20
+d int 120
+e int* 124

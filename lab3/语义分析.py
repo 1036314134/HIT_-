@@ -2,14 +2,6 @@ from sys import exit
 from typing import Dict, List
 
 class Node(object):
-    '''语法分析树节点
-    Args:
-        __word: 节点对应符号
-        __depth: 节点深度
-        __attribute: 节点属性
-        __child: 子节点
-    '''
-
     def __init__(self, word, depth):
         self.__word = word
         self.__depth = depth
@@ -168,7 +160,7 @@ def get_size(t: str, ret_base: bool = False) -> int:
     global STRUCTS
     t = t.split()
     if t[0].endswith('*'):
-        base = 64
+        base = 8
     elif t[0] in STRUCTS:
         base = STRUCTS[t[0]]['size']
     else:
@@ -593,7 +585,7 @@ def analyze(node: Node,
 
 
 if __name__ == '__main__':
-    SYMBOL = {'int': 32, 'float': 32, 'bool': 1}
+    SYMBOL = {'int': 4, 'float': 4, 'bool': 1}
     CURRENT_OFFSET = 0
     PARAMETER_QUEUE = []
     TEMP_VARIABLE_CNT = 0
