@@ -1,7 +1,9 @@
-# HIT_-Compiling_System_2021 lab
+# HIT_Compiling_System_2021 lab
+
 
 
 lab2
+
 利用加载好的action和goto表进行语法分析。
 文件执行时action.txt、goto.txt和input.txt需要放到同一路径下。
 输入文件为input.txt，内容为词法分析后的结果
@@ -10,3 +12,4 @@ lab2
 词法分析输出结果为input.txt
 
 lab3
+
