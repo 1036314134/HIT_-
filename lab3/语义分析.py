@@ -30,14 +30,6 @@ class Node(object):
         self.__attribute[attr] = value
 
 class Tetrad(object):
-    '''四元组
-    Args:
-        _op: 操作符
-        _value1: 源操作数1
-        _value2: 源操作数2
-        _result: 目的操作数
-    '''
-
     def __init__(self, op, value1, value2, result):
         self._op = op
         self._value1 = value1
@@ -84,12 +76,6 @@ class Tetrad(object):
 
 
 def build_tree(path):
-    '''从路径中读取语法树
-    Args:
-        path: 语法树路径
-    Returns:
-        语法树的根
-    '''
     root = Node('Start', 0)
     stack = [root]
 
@@ -122,15 +108,6 @@ def build_tree(path):
 
 
 def add_symbol(lexeme: str, t: str, symbols: Dict[str, Dict]) -> str:
-    '''在符号表中登录符号
-    Args:
-        lexeme: 符号名
-        t: 类型
-        symbols: 符号表
-    Returns:
-        如果无语义错误，返回'OK'
-        否则，返回相应语义错误
-    '''
     if lexeme in symbols:
         return '%s is defined' % (lexeme)
 
@@ -150,13 +127,6 @@ def add_symbol(lexeme: str, t: str, symbols: Dict[str, Dict]) -> str:
 
 
 def get_size(t: str, ret_base: bool = False) -> int:
-    '''计算数据类型对应的字节长度
-    Args:
-        t: 数据类型，格式为t num1 num2 ...
-        ret_base: 是否返回基础类型字节长
-    Returns:
-        对应字节长度
-    '''
     global STRUCTS
     t = t.split()
     if t[0].endswith('*'):
@@ -175,14 +145,6 @@ def get_size(t: str, ret_base: bool = False) -> int:
 
 
 def get_offset(lexeme: str, index: str) -> int:
-    '''计算数组对应的偏置
-    Args:
-        lexeme: 变量名
-        index: 角标，格式为"idx1 idx2 ... idxn"
-    Returns:
-        若无语义错误，则返回偏置
-        否则，返回-1
-    '''
     index = index.split()
     index = [int(x) for x in index]
 
@@ -201,45 +163,24 @@ def get_offset(lexeme: str, index: str) -> int:
     return lexeme['offset'] + offset * lexeme['type_size']
 
 def _array(const: str, t: str):
-    '''生成数组
-    '''
     return '%s %s' % (t, const)
 
 def _newtemp() -> str:
-    '''生成新的临时变量
-    Args:
-        type: 临时变量类型
-    Returns:
-        变量名
-    '''
     global TEMP_VARIABLE_CNT
     TEMP_VARIABLE_CNT += 1
     name = 't%d' % (TEMP_VARIABLE_CNT)
     return name
 
-def new_tetrad(op: str, value1: str, value2: str, result: str,
-         tetrads: List[Tetrad]):
-    '''生成四元组并保存
-    '''
+def new_tetrad(op: str, value1: str, value2: str, result: str, tetrads: List[Tetrad]):
     tetrads.append(Tetrad(op, value1, value2, result))
 
 def num_type(num):
-    '''返回num对应的数值类型
-    Args:
-        num: 待检查数值
-    Returns:
-        int, float
-    '''
     if num.isdigit():
         return 'int'
     return 'float'
 
 
-def analyze(node: Node,
-            symbols: Dict[str, Dict],
-            tetrads: List[Tetrad],
-            functions: Dict[str, Dict],
-            update: bool = True):
+def analyze(node: Node,symbols: Dict[str, Dict],tetrads: List[Tetrad],functions: Dict[str, Dict],update: bool = True):
     '''根据语法树生成符号表和四元式序列
     Args:
         node: 语法树根
